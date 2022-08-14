@@ -16,6 +16,7 @@ import smtplib
 from email.message import EmailMessage
 from string import Template
 from pathlib import Path
+import config
 
 email_content = Template(Path('.\\generic_email.html').read_text())  # .substitute(name="Ashish")
 email = EmailMessage()
@@ -28,5 +29,5 @@ email.set_content(email_content.substitute({'name': 'Katappa'}), 'html')
 with smtplib.SMTP(host='smtp.gmail.com', port=587) as smtp:
     smtp.ehlo()
     smtp.starttls()
-    smtp.login(user='noreplystudywithashish@gmail.com', password='zwhemhbfuuhaacys')
+    smtp.login(user=config.username, password=config.password)
     smtp.send_message(email)
