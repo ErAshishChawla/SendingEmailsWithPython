@@ -26,6 +26,7 @@ for the account and use that password to login.
 """
 
 import smtplib
+import config
 from email.message import EmailMessage
 
 email = EmailMessage()
@@ -37,6 +38,6 @@ email.set_content('I am a Python Master!')
 with smtplib.SMTP(host='smtp.gmail.com', port=587) as smtp:
     smtp.ehlo()
     smtp.starttls()  # it is an encryption method used to securely connect with email client
-    smtp.login(user='noreplystudywithashish@gmail.com', password='zwhemhbfuuhaacys')
+    smtp.login(user=config.username, password=config.password)
     smtp.send_message(email)
     print('all good boss!!')
